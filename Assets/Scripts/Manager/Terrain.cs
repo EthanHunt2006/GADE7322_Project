@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     int Size = 64 * 2;
-    public int cellSize = 1; // Scale of each cell, for that intimate or expansive touch
+    public int cellSize = 1; 
 
     private Mesh mesh;
     private Vector3[] vertices;
