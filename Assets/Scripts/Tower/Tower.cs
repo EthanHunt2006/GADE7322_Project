@@ -6,11 +6,11 @@ public class Tower : MonoBehaviour
 {
     int current_health = 100;
 
-    int tower_damage = 5;
+    public int tower_damage = 5;
 
     float attack_interval = 3f;
 
-    float max_attack_interval = 5f;
+    public float max_attack_interval = 5f;
 
     public GameObject line_obj;
 
@@ -26,8 +26,24 @@ public class Tower : MonoBehaviour
 
     public bool is_defender = false;
 
+    public int set_health = 100;
+
+    GameObject game_manager;
+
+    Difficulty difficulty;
+
+    int spawn_index;
+
+    public bool explode_on_death = false;
+
+    public GameObject bomb;
+
+    public GameObject BOOM;
+
     private void Awake()
     {
+        current_health = set_health;
+
         line_renderer = line_obj.GetComponent<LineRenderer>();
     }
 
@@ -36,6 +52,15 @@ public class Tower : MonoBehaviour
         health_bar = health_bar_obj.GetComponent<HealthBar>();
 
         health_bar.MaxHealth(current_health);
+
+        game_manager = GameObject.Find("GameManager");
+
+        difficulty = game_manager.GetComponent<Difficulty>();
+    }
+
+    public void SetSpawnIndex(int index)
+    {
+        spawn_index = index;
     }
 
     public void TakeDamage(int damage)
@@ -48,13 +73,15 @@ public class Tower : MonoBehaviour
 
         //Debug.Log("TOWER took damage : " + damage + " current health is : " + current_health);
 
+        difficulty.TrackDamageTakenPerMinute(damage);
+
         
 
     }
 
     private void Update()
     {
-        Debug.Log("Tower Health : " + current_health);
+        //Debug.Log("Tower Health : " + current_health);
 
         CheckHealth();
 
@@ -152,6 +179,17 @@ public class Tower : MonoBehaviour
         }
         else if (is_defender == true) 
         {
+            if (explode_on_death == true)
+            {
+                Instantiate(bomb, transform.position, Quaternion.identity);
+
+                Instantiate(BOOM, transform.position, Quaternion.identity);
+            }
+
+            SpawnManager manager = game_manager.GetComponent<SpawnManager>();
+
+            manager.RemoveSpawnFromIndex(spawn_index);
+
             Destroy(gameObject);
         }
 

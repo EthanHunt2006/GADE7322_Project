@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     int Size = 64 * 2;
-    public int cellSize = 1; 
+    public int cellSize = 1; // Scale of each cell, for that intimate or expansive touch
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -80,9 +80,9 @@ public class GridGenerator : MonoBehaviour
 
         float[,] map = GenerateDiamondSquareHeightmap(Size + 1,  0f, 20f, 20f);
 
-        Debug.Log(map.Length);
+        //Debug.Log(map.Length);
 
-        Debug.Log(mesh.vertices.Length);
+        //Debug.Log(mesh.vertices.Length);
 
         ApplyHeightmap(map);
 

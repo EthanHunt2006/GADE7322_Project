@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1257658165963921604}
   m_Layer: 0
   m_Name: Enemy_Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Spawn
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,4 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417a6aff77652f94f9269126cdcf3d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  Enemy: {fileID: 6277154310077620271, guid: 8a81730f2fb9bcf4382ac57ed4a60d7f, type: 3}
+  EnemyMelee: {fileID: 6277154310077620271, guid: 8a81730f2fb9bcf4382ac57ed4a60d7f, type: 3}
+  melee_spawn_chance: 40
+  EnemyRanged: {fileID: 2966159217354538122, guid: ba50ae4ae9b47104c8d8a133cf340efa, type: 3}
+  ranged_spawn_chance: 20
+  EnemyBomber: {fileID: 4211667536118023050, guid: 277588d4b021ce24ab5fb3d7c334f108, type: 3}
+  bomber_spawn_chance: 50
+  spawn_probability: 0
+  base_probability: 0
